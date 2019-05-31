@@ -5,6 +5,7 @@ import { Link, graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Features from '../components/Features'
 import BlogRoll from '../components/BlogRoll'
+import Content, { HTMLContent } from '../components/Content'
 
 export const IndexPageTemplate = ({
   image,
@@ -14,8 +15,13 @@ export const IndexPageTemplate = ({
   mainpitch,
   description,
   intro,
-}) => (
-  <div>
+  content, 
+  contentComponent
+}) => {
+  const PageContent = contentComponent || Content
+
+  return (
+    <div>
     <div
       className="full-width-image margin-top-0"
       style={{
@@ -49,6 +55,7 @@ export const IndexPageTemplate = ({
         >
           {title}
         </h1>
+        <PageContent className="content" content={content} />
         <h3
           className="has-text-weight-bold is-size-5-mobile is-size-5-tablet is-size-4-widescreen"
           style={{
@@ -112,7 +119,9 @@ export const IndexPageTemplate = ({
       </div>
     </section>
   </div>
-)
+  )
+}
+
 
 IndexPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -124,32 +133,32 @@ IndexPageTemplate.propTypes = {
   intro: PropTypes.shape({
     blurbs: PropTypes.array,
   }),
+  content: PropTypes.string,
+  contentComponent: PropTypes.func,
 }
 
 const IndexPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark
+  const { markdownRemark: post } = data
 
   return (
     <Layout>
       <IndexPageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
-        heading={frontmatter.heading}
-        subheading={frontmatter.subheading}
-        mainpitch={frontmatter.mainpitch}
-        description={frontmatter.description}
-        intro={frontmatter.intro}
+        image={post.frontmatter.image}
+        title={post.frontmatter.title}
+        heading={post.frontmatter.heading}
+        subheading={post.frontmatter.subheading}
+        mainpitch={post.frontmatter.mainpitch}
+        description={post.frontmatter.description}
+        intro={post.frontmatter.intro}
+        content={post.html}
+        contentComponent={HTMLContent}
       />
     </Layout>
   )
 }
 
 IndexPage.propTypes = {
-  data: PropTypes.shape({
-    markdownRemark: PropTypes.shape({
-      frontmatter: PropTypes.object,
-    }),
-  }),
+  data: PropTypes.object.isRequired
 }
 
 export default IndexPage
@@ -157,6 +166,7 @@ export default IndexPage
 export const pageQuery = graphql`
   query IndexPageTemplate {
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+      html
       frontmatter {
         title
         image {
