@@ -26,7 +26,7 @@ class SectionLinks extends React.Component {
       query={graphql`
         query SectionLinksQuery {
           allMarkdownRemark(
-            sort: { order: DESC, fields: [frontmatter___date] }
+            sort: { order: DESC, fields: [frontmatter___title] }
             filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
           ) {
             edges {
