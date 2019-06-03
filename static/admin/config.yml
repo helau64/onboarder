@@ -20,7 +20,7 @@ collections:
         widget: "relation"
         collection: "section"
         searchFields: ["title"]
-        valueField: "id"
+        valueField: "title"
         required: true
 
   - name: "section"
