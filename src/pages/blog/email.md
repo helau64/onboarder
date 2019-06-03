@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
 title: Email
-section: Good to know
+section: Good to Know
 ---
 You will have email
