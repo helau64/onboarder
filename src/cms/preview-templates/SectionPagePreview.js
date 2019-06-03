@@ -6,6 +6,7 @@ const SectionPagePreview = ({ entry, widgetFor }) => (
   <SectionPageTemplate
     content={widgetFor('body')}
     title={entry.getIn(['data', 'title'])}
+    id={entry.getIn(['data', 'id'])}
   />
 )
 
