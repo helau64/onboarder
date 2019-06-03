@@ -20,7 +20,23 @@ collections:
       - {label: "Featured Image", name: "featuredimage", widget: image}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list"}
+      - label: "Section"
+        name: "section"
+        widget: "relation"
+        collection: "section"
+        searchFields: ["title"]
+        valueField: "title"
 
+  - name: "section"
+    label: "Section Page"
+    folder: "src/pages/sections"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "section-page"}
+      - {label: Title, name: title, widget: string}
+      - {label: "Body", name: "body", widget: "markdown"}
+      
   - name: "pages"
     label: "Pages"
     files:
