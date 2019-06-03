@@ -25,7 +25,7 @@ BlogPostTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
   title: PropTypes.string,
-  section: PropTypes.number,
+  section: PropTypes.string,
 }
 
 const BlogPost = ({ data }) => {

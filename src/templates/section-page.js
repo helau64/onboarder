@@ -10,6 +10,7 @@ export const SectionPageTemplate = ({
   content,
   contentComponent,
   title,
+  id
 }) => {
   const PostContent = contentComponent || Content
 
@@ -34,6 +35,7 @@ SectionPageTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
   title: PropTypes.string,
+  id: PropTypes.string,
 }
 
 const SectionPage = ({ data }) => {
@@ -42,6 +44,7 @@ const SectionPage = ({ data }) => {
   return (
     <Layout>
       <SectionPageTemplate
+        id={post.id}
         content={post.html}
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
