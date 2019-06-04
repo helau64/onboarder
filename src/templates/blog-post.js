@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql, Link } from 'gatsby'
+import { graphql} from 'gatsby'
 import Layout from '../components/Layout'
 import PageLinks from '../components/PageLinks'
 import Content, { HTMLContent } from '../components/Content'
@@ -10,13 +10,14 @@ export const BlogPostTemplate = ({
   contentComponent,
   title,
   section, 
-  id
+  id,
+  order
 }) => {
   const PostContent = contentComponent || Content
 
   return (
     <section className="section">
-      <h1 className="title is-size-2 has-text-weight-bold is-bold-light">{title}</h1>
+      <h1 className="title is-size-2 has-text-weight-bold is-bold-light">{title} - {order}</h1>
       <PostContent content={content} />
       <PageLinks section={section} id={id} />
     </section>
@@ -28,7 +29,8 @@ BlogPostTemplate.propTypes = {
   contentComponent: PropTypes.func,
   title: PropTypes.string,
   section: PropTypes.string,
-  id: PropTypes.string
+  id: PropTypes.string,
+  order: PropTypes.number
 }
 
 const BlogPost = ({ data }) => {
@@ -43,6 +45,7 @@ const BlogPost = ({ data }) => {
         description={post.frontmatter.description}
         title={post.frontmatter.title}
         section={post.frontmatter.section.id}
+        order={post.frontmatter.order}
       />
     </Layout>
   )
@@ -63,6 +66,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        order
         section {
           id
         }

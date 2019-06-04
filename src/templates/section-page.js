@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { kebabCase } from 'lodash'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import SectionLinks from '../components/SectionLinks'
@@ -10,7 +9,8 @@ export const SectionPageTemplate = ({
   content,
   contentComponent,
   title,
-  id
+  id,
+  order
 }) => {
   const PostContent = contentComponent || Content
 
@@ -20,7 +20,7 @@ export const SectionPageTemplate = ({
         <div className="columns">
           <div className="column is-10 is-offset-1">
             <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-              {title} - {id}
+              {title} - {order}
             </h1>
             <PostContent content={content} />
             <SectionLinks title={title} />
@@ -36,6 +36,7 @@ SectionPageTemplate.propTypes = {
   contentComponent: PropTypes.func,
   title: PropTypes.string,
   id: PropTypes.string,
+  order: PropTypes.number
 }
 
 const SectionPage = ({ data, test }) => {
@@ -48,6 +49,7 @@ const SectionPage = ({ data, test }) => {
         content={post.html}
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
+        order={post.frontmatter.order}
       />
     </Layout>
   )
@@ -68,6 +70,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        order
       }
     }
   }

@@ -15,6 +15,7 @@ collections:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
+      - {label: Order, name: order, widget: number}
       - label: "Section"
         name: "section"
         widget: "relation"
@@ -32,6 +33,7 @@ collections:
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "section-page"}
       - {label: Title, name: title, widget: string}
+      - {label: Order, name: order, widget: number}
       - {label: "Body", name: "body", widget: "markdown"}
       
       

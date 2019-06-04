@@ -6,14 +6,25 @@ class PageLinks extends React.Component {
     render() {
       let link
       const section = this.props.section
-      const { edges: posts } = this.props.data.allMarkdownRemark
-      const sectionPages = posts.filter(post => post.node.frontmatter.section.id === section)
-      const nextPage = sectionPages.findIndex(post => post.node.id === this.props.id) + 1
+      
+      const { edges: posts } = this.props.data.pages
+      const { edges: sections } = this.props.data.sections
+      
+      const allPagesInSection = posts.filter(post => post.node.frontmatter.section.id === section)
+      const nextPageInSection = allPagesInSection.findIndex(post => post.node.id === this.props.id) + 1
 
-      if (nextPage < sectionPages.length ) {
-        link = <Link to={sectionPages[nextPage].node.fields.slug}>Next</Link>
-      } else {
-        link = <p>Next section</p>
+      const nextSection = sections.findIndex(section => section.node.id === this.props.section) + 1
+
+      console.log(nextSection)
+
+      if (nextPageInSection < allPagesInSection.length ) {
+        link = <Link to={allPagesInSection[nextPageInSection].node.fields.slug}>Next page</Link>
+      } 
+      else if (nextSection < sections.length) {
+        link = <Link to={sections[nextSection].node.fields.slug}>Next section</Link>
+      } 
+      else {
+        link = <p>You're done</p>
       }
       return (
           <div>
@@ -25,7 +36,10 @@ class PageLinks extends React.Component {
   
   PageLinks.propTypes = {
     data: PropTypes.shape({
-      allMarkdownRemark: PropTypes.shape({
+      pages: PropTypes.shape({
+        edges: PropTypes.array,
+      }),
+      sections: PropTypes.shape({
         edges: PropTypes.array,
       }),
     }),
@@ -37,9 +51,29 @@ class PageLinks extends React.Component {
     <StaticQuery
       query={graphql`
         query PageLinksQuery {
-          allMarkdownRemark(
-            sort: { order: DESC, fields: [frontmatter___title] }
+          pages: allMarkdownRemark(
+            sort: { order: DESC, fields: [frontmatter___order] }
             filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+          ) {
+            edges {
+              node {
+                id
+                fields {
+                  slug
+                }
+                frontmatter {
+                  title
+                  templateKey
+                  section {
+                      id
+                  }
+                }
+              }
+            }
+          }
+          sections: allMarkdownRemark(
+            sort: { order: DESC, fields: [frontmatter___order] }
+            filter: { frontmatter: { templateKey: { eq: "section-page" } } }
           ) {
             edges {
               node {

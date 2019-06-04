@@ -1,6 +1,8 @@
 ---
 templateKey: blog-post
-title: Email
+title: Good to Know Post 2
 section: Good to Know
+order: 2
 ---
-You will have email
+
+Testing
