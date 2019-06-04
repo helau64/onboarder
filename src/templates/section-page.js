@@ -23,7 +23,7 @@ export const SectionPageTemplate = ({
               {title} - {id}
             </h1>
             <PostContent content={content} />
-            <SectionLinks />
+            <SectionLinks title={title} />
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@ SectionPageTemplate.propTypes = {
   id: PropTypes.string,
 }
 
-const SectionPage = ({ data }) => {
+const SectionPage = ({ data, test }) => {
   const { markdownRemark: post } = data
 
   return (
@@ -56,7 +56,7 @@ const SectionPage = ({ data }) => {
 SectionPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.object,
-  }),
+  })
 }
 
 export default SectionPage

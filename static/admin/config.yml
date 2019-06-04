@@ -31,7 +31,6 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "section-page"}
-      - {label: ID, name: id, widget: string, default: "{{id}}"}
       - {label: Title, name: title, widget: string}
       - {label: "Body", name: "body", widget: "markdown"}
       
