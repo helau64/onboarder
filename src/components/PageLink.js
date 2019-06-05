@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 
-class PageLinks extends React.Component {
+class PageLink extends React.Component {
     render() {
       let link
       const section = this.props.section
@@ -14,8 +14,6 @@ class PageLinks extends React.Component {
       const nextPageInSection = allPagesInSection.findIndex(post => post.node.id === this.props.id) + 1
 
       const nextSection = sections.findIndex(section => section.node.id === this.props.section) + 1
-
-      console.log(nextSection)
 
       if (nextPageInSection < allPagesInSection.length ) {
         link = <Link to={allPagesInSection[nextPageInSection].node.fields.slug}>Next page</Link>
@@ -34,7 +32,7 @@ class PageLinks extends React.Component {
     }
   }
   
-  PageLinks.propTypes = {
+  PageLink.propTypes = {
     data: PropTypes.shape({
       pages: PropTypes.shape({
         edges: PropTypes.array,
@@ -52,7 +50,7 @@ class PageLinks extends React.Component {
       query={graphql`
         query PageLinksQuery {
           pages: allMarkdownRemark(
-            sort: { order: DESC, fields: [frontmatter___order] }
+            sort: { order: ASC, fields: [frontmatter___order] }
             filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
           ) {
             edges {
@@ -72,7 +70,7 @@ class PageLinks extends React.Component {
             }
           }
           sections: allMarkdownRemark(
-            sort: { order: DESC, fields: [frontmatter___order] }
+            sort: { order: ASC, fields: [frontmatter___order] }
             filter: { frontmatter: { templateKey: { eq: "section-page" } } }
           ) {
             edges {
@@ -93,6 +91,6 @@ class PageLinks extends React.Component {
           }
         }
       `}
-      render={(data) => <PageLinks data={data} {...props} />}
+      render={(data) => <PageLink data={data} {...props} />}
     />
   )

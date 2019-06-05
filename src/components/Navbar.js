@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link } from 'gatsby'
-import github from '../img/github-icon.svg'
-import logo from '../img/logo.svg'
+import PropTypes from 'prop-types'
+import { Link, graphql, StaticQuery } from 'gatsby'
 
-const Navbar = class extends React.Component {
+class Navbar extends React.Component {
+  
   constructor(props) {
     super(props)
     this.state = {
@@ -33,6 +33,9 @@ const Navbar = class extends React.Component {
   }
 
   render() {
+    const { data } = this.props
+    const { edges: pages } = data.allMarkdownRemark
+    
     return (
       <nav
         className="navbar is-transparent"
@@ -40,10 +43,6 @@ const Navbar = class extends React.Component {
         aria-label="main-navigation"
       >
         <div className="container">
-          <div className="navbar-brand">
-            <Link to="/" className="navbar-item" title="Logo">
-              <img src={logo} alt="Kaldi" style={{ width: '88px' }} />
-            </Link>
             {/* Hamburger menu */}
             <div
               className={`navbar-burger burger ${this.state.navBarActiveClass}`}
@@ -54,27 +53,17 @@ const Navbar = class extends React.Component {
               <span />
               <span />
             </div>
-          </div>
           <div
             id="navMenu"
             className={`navbar-menu ${this.state.navBarActiveClass}`}
           >
             <div className="navbar-start has-text-centered">
-              <Link className="navbar-item" to="/blog">
-                Blog
-              </Link>
-            </div>
-            <div className="navbar-end has-text-centered">
-              <a
-                className="navbar-item"
-                href="https://github.com/netlify-templates/gatsby-starter-netlify-cms"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="icon">
-                  <img src={github} alt="Github" />
-                </span>
-              </a>
+              {pages &&
+                pages.map(({ node: page }) => (
+                  <Link className="navbar-item" to={page.fields.slug} key={page.id}>
+                    {page.frontmatter.title}
+                  </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -83,4 +72,37 @@ const Navbar = class extends React.Component {
   }
 }
 
-export default Navbar
+Navbar.propTypes = {
+  data: PropTypes.shape({
+    allMarkdownRemark: PropTypes.shape({
+      edges: PropTypes.array,
+    }),
+  }),
+}
+
+export default () => (
+  <StaticQuery
+    query={graphql`
+      query NavbarQuery {
+        allMarkdownRemark(
+          sort: { order: ASC, fields: [frontmatter___order] }
+          filter: { frontmatter: { templateKey: { eq: "section-page" } } }
+        ) {
+          edges {
+            node {
+              id
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+                templateKey
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={(data, count) => <Navbar data={data} count={count} />}
+  />
+)

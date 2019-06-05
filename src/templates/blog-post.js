@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql} from 'gatsby'
 import Layout from '../components/Layout'
-import PageLinks from '../components/PageLinks'
+import PageLink from '../components/PageLink'
 import Content, { HTMLContent } from '../components/Content'
 
 export const BlogPostTemplate = ({
@@ -10,16 +10,15 @@ export const BlogPostTemplate = ({
   contentComponent,
   title,
   section, 
-  id,
-  order
+  id
 }) => {
   const PostContent = contentComponent || Content
 
   return (
     <section className="section">
-      <h1 className="title is-size-2 has-text-weight-bold is-bold-light">{title} - {order}</h1>
+      <h1>{title}</h1>
       <PostContent content={content} />
-      <PageLinks section={section} id={id} />
+      <PageLink section={section} id={id} />
     </section>
   )
 }
@@ -30,7 +29,6 @@ BlogPostTemplate.propTypes = {
   title: PropTypes.string,
   section: PropTypes.string,
   id: PropTypes.string,
-  order: PropTypes.number
 }
 
 const BlogPost = ({ data }) => {
@@ -45,7 +43,6 @@ const BlogPost = ({ data }) => {
         description={post.frontmatter.description}
         title={post.frontmatter.title}
         section={post.frontmatter.section.id}
-        order={post.frontmatter.order}
       />
     </Layout>
   )
