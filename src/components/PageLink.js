@@ -25,7 +25,7 @@ class PageLink extends React.Component {
         link = <p>You're done</p>
       }
       return (
-          <div>
+          <div className="next-link_wrapper">
               {link}
           </div>
       )

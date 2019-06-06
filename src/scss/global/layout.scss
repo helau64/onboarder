@@ -16,3 +16,12 @@ main {
     display: flex;
     flex-grow: 1;
 }
+
+.content {
+    margin: rem(40px) 0;
+    max-width: $text-width;
+}
+
+.next-link_wrapper {
+    display: inline-block;
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql} from 'gatsby'
+import {graphql} from 'gatsby'
 import Layout from '../components/Layout'
 import PageLink from '../components/PageLink'
 import Content, { HTMLContent } from '../components/Content'
@@ -10,14 +10,23 @@ export const BlogPostTemplate = ({
   contentComponent,
   title,
   section, 
-  id
+  id,
+  link
 }) => {
   const PostContent = contentComponent || Content
 
+  let buttonLink
+
+  if (link && link.linkUrl) {
+    buttonLink = <a href={link.linkUrl} target="_blank" rel="noopener noreferrer" className="button-link">{link.linkText ? link.linkText : "Go"}</a>
+  }
+
+
   return (
     <section className="section">
-      <h1>{title}</h1>
-      <PostContent content={content} />
+      <h1 className="title">{title}</h1>
+      <PostContent content={content} className="content"/>
+      {buttonLink}
       <PageLink section={section} id={id} />
     </section>
   )
@@ -29,6 +38,7 @@ BlogPostTemplate.propTypes = {
   title: PropTypes.string,
   section: PropTypes.string,
   id: PropTypes.string,
+  link: PropTypes.object,
 }
 
 const BlogPost = ({ data }) => {
@@ -43,6 +53,7 @@ const BlogPost = ({ data }) => {
         description={post.frontmatter.description}
         title={post.frontmatter.title}
         section={post.frontmatter.section.id}
+        link={post.frontmatter.link}
       />
     </Layout>
   )
@@ -64,6 +75,10 @@ export const pageQuery = graphql`
       frontmatter {
         title
         order
+        link {
+          linkText
+          linkUrl
+        }
         section {
           id
         }

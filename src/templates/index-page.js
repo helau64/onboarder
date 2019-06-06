@@ -14,10 +14,10 @@ export const IndexPageTemplate = ({
   const PageContent = contentComponent || Content
 
   return (
-    <section>
-      <h1>{title}</h1>
+    <section className="index-page">
+      <h1 className="title">{title}</h1>
       <PageContent className="content" content={content} />
-      <Link to={link} className="next-link">Get started</Link>
+      <Link to={link} className="button-link">Get started</Link>
     </section>
   )
 }

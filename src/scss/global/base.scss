@@ -13,6 +13,10 @@ a {
     color: $black;
 }
 
+.title {
+    max-width: $text-width;
+}
+
 .next-link {
     @include small;
     text-decoration: none;
@@ -28,6 +32,8 @@ a {
 .button-link {
     @include small;
     text-decoration: none;
+    text-transform: uppercase;
+    margin-right: rem(50px);
     border: 2px solid $black;
     border-radius: 23.5px;
     padding: 15px 20px;

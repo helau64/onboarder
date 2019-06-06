@@ -1,11 +1,12 @@
 .navbar {
     ul {
         @include unlist;
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
         li {
-            flex-grow: 1;
             text-align: center;
             border-top: 7px solid transparent;
+            flex: 1 1 0;
         }
         span {
             border-bottom: 1px solid transparent;
@@ -14,7 +15,7 @@
             display: block;
             @include light;
             text-decoration: none;
-            padding: rem(20px);
+            padding: rem(20px) rem(5px);
             &:hover, &:focus, &:active {
                 span {
                     border-color: $black;
