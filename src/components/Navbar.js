@@ -62,7 +62,7 @@ class Navbar extends React.Component {
                 pages.map(({ node: page }) => (
                   <li className="navbar-item" key={page.id}>
                     <Link to={page.fields.slug}>
-                      {page.frontmatter.title}
+                      <span>{page.frontmatter.title}</span>
                     </Link>
                   </li>
               ))}

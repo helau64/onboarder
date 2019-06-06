@@ -9,6 +9,10 @@ body {
     @include regular;
 }
 
+a {
+    color: $black;
+}
+
 .next-link {
     @include small;
     text-decoration: none;

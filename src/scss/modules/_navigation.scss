@@ -1,45 +1,3 @@
-// .navigation {
-//     margin: 0;
-//     padding: 0;
-//     display: flex;
-//     a {
-//         @include light;
-//         @include small;
-//         text-decoration: none;
-//         padding-bottom: 1px;
-//         &:hover, &:focus, &:active {
-//             border-bottom: solid $black 1px;
-//         }
-//     }
-//     li {
-//         list-style-type: none;
-//         text-align: center;
-//         padding: rem(15px);
-//         width: rem(180px);
-//         border-top: solid 7px;
-//         &.active {
-//             border-color: $black;
-//             a {
-//                 @include bold;
-//             }
-//         }
-//         &.inactive {
-//             border-color: transparent;
-//         }
-//     }
-// }
-
-// .section-navigation {
-//     background-color: $black;
-//     a {
-//         color: $grey;
-//         &:hover, &:focus, &:active {
-//             border-bottom: solid $grey 1px;
-//         }
-//     }
-    
-// }
-
 .navbar {
     ul {
         @include unlist;
@@ -47,11 +5,21 @@
         li {
             flex-grow: 1;
             text-align: center;
-            padding: rem(20px);
             border-top: 7px solid transparent;
+        }
+        span {
+            border-bottom: 1px solid transparent;
         }
         a {
             display: block;
+            @include light;
+            text-decoration: none;
+            padding: rem(20px);
+            &:hover, &:focus, &:active {
+                span {
+                    border-color: $black;
+                }
+            }
         }
     }
 }

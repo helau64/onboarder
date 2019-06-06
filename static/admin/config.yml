@@ -13,9 +13,6 @@ collections:
     slug: "{{section}}/{{slug}}"
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: Order, name: order, widget: number}
-      - {label: "Body", name: "body", widget: "markdown"}
       - label: "Section"
         name: "section"
         widget: "relation"
@@ -24,6 +21,15 @@ collections:
         searchFields: ["title"]
         valueField: "title"
         required: true
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Order", name: "order", widget: "number"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Link"
+        name: "link"
+        widget: "object"
+        fields:
+          - {label: "Link text", name: "link-text", widget: "string"}
+          - {label: "Link URL", name: "link-url", widget: "string"}
 
   - name: "section"
     label: "Section Page"
