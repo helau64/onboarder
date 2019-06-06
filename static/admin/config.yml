@@ -27,9 +27,10 @@ collections:
       - label: "Link"
         name: "link"
         widget: "object"
+        required: false
         fields:
-          - {label: "Link text", name: "link-text", widget: "string"}
-          - {label: "Link URL", name: "link-url", widget: "string"}
+          - {label: "Link text", name: "link-text", widget: "string", required: false}
+          - {label: "Link URL", name: "link-url", widget: "string", required: false}
 
   - name: "section"
     label: "Section Page"
