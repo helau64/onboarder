@@ -16,10 +16,10 @@ class PageLink extends React.Component {
       const nextSection = sections.findIndex(section => section.node.id === this.props.section) + 1
 
       if (nextPageInSection < allPagesInSection.length ) {
-        link = <Link to={allPagesInSection[nextPageInSection].node.fields.slug}>Next page</Link>
+        link = <Link to={allPagesInSection[nextPageInSection].node.fields.slug} className="next-link">Next</Link>
       } 
       else if (nextSection < sections.length) {
-        link = <Link to={sections[nextSection].node.fields.slug}>Next section</Link>
+        link = <Link to={sections[nextSection].node.fields.slug} className="next-link">Next</Link>
       } 
       else {
         link = <p>You're done</p>

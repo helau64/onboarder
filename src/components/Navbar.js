@@ -57,14 +57,16 @@ class Navbar extends React.Component {
             id="navMenu"
             className={`navbar-menu ${this.state.navBarActiveClass}`}
           >
-            <div className="navbar-start has-text-centered">
+            <ul>
               {pages &&
                 pages.map(({ node: page }) => (
-                  <Link className="navbar-item" to={page.fields.slug} key={page.id}>
-                    {page.frontmatter.title}
-                  </Link>
+                  <li className="navbar-item" key={page.id}>
+                    <Link to={page.fields.slug}>
+                      {page.frontmatter.title}
+                    </Link>
+                  </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </nav>

@@ -1,0 +1,91 @@
+@mixin regular {
+    font-family: "SofiaPro Regular", Helvetica, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@mixin light {
+    font-family: "SofiaPro Light", Helvetica, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@mixin bold {
+    font-family: "SofiaPro SemiBold", Helvetica, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@mixin base {
+    font-size: rem(21px);
+}
+
+@mixin small {
+    font-size: rem(16px);
+}
+
+@mixin h2 {
+    font-size: rem(32px);
+    @include max-width(sm) {
+        font-size: rem(26px);
+    }
+}
+
+@mixin h1 {
+    font-size: rem(58px);
+    @include max-width(sm) {
+        @include h2;
+    }
+}
+
+@mixin min-width($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+      $breakpoint-value: map-get($breakpoints, $breakpoint);
+      @media (min-width: $breakpoint-value) {
+        @content;
+      }
+    } @else {
+      @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}
+
+@mixin max-width($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+      $breakpoint-value: map-get($breakpoints, $breakpoint);
+      @media (max-width: $breakpoint-value) {
+        @content;
+      }
+    } @else {
+      @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}
+
+@mixin between-widths($lower, $upper) {
+    @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+      $lower-breakpoint: map-get($breakpoints, $lower);
+      $upper-breakpoint: map-get($breakpoints, $upper);
+      @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
+        @content;
+      }
+    } @else {
+      @if (map-has-key($breakpoints, $lower) == false) {
+        @warn 'Your lower breakpoint was invalid: #{$lower}.';
+      }
+      @if (map-has-key($breakpoints, $upper) == false) {
+        @warn 'Your upper breakpoint was invalid: #{$upper}.';
+      }
+    }
+}
+
+@mixin unlist {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+@mixin container {
+    width: 100%;
+    max-width: $max-width;
+    padding: 0 rem(20px);
+    margin: auto;
+  }

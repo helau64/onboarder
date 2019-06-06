@@ -1,0 +1,31 @@
+html {
+    @include rem-baseline;
+    line-height: 1.5;
+}
+
+body {
+    background-color: white;
+    color: $black;
+    @include regular;
+}
+
+.next-link {
+    @include small;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $black;
+    text-decoration: none;
+    padding-bottom: 1px;
+    &:hover, &:focus, &:active {
+        border-bottom: solid $black 2px;
+    }
+}
+
+.button-link {
+    @include small;
+    text-decoration: none;
+    border: 2px solid $black;
+    border-radius: 23.5px;
+    padding: 15px 20px;
+    transition: background-color 0.25s, color 0.25s;
+}

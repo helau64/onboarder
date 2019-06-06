@@ -1,0 +1,18 @@
+.section-template {
+    background-color: $black;
+    color: white;
+    a {
+        color: white;
+    }
+    .button-link {
+        border-color: white;
+        &:hover, &:focus, &:active {
+            background-color: white;
+            color: $black;
+        }
+    }
+    article {
+        margin-left: rem(120px);
+        max-width: rem(735px);
+    }
+}

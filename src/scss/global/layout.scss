@@ -1,0 +1,18 @@
+#___gatsby, div[role=group], .site-container {
+    height: 100%;
+    min-height: 100vh;
+}
+
+.site-container {
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    @include container;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+}

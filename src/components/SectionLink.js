@@ -10,7 +10,7 @@ class SectionLink extends React.Component {
       let link
 
       if (pages.length > 0) {
-        link = <Link to={pages[0].node.fields.slug}>Next</Link>
+        link = <Link to={pages[0].node.fields.slug} className="next-link">Next</Link>
       } else {
         link = <p>
           There are no pages in this section. <Link to="/admin">Would you like to add some?</Link></p>

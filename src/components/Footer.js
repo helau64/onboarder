@@ -5,7 +5,6 @@ const Footer = class extends React.Component {
   render() {
     return (
       <footer className="footer">
-        <section className="menu">
           <ul className="menu-list">
             <li>
               <Link to="/" className="navbar-item">
@@ -23,7 +22,6 @@ const Footer = class extends React.Component {
               </a>
             </li>
           </ul>
-        </section>
       </footer>
     )
   }

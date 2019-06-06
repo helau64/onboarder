@@ -1,0 +1,10 @@
+.footer {
+    .menu-list {
+        @include unlist;
+        margin-bottom: rem(20px);
+        li {
+            display: inline-block;
+            margin-right: rem(30px);
+        }
+    }
+}
