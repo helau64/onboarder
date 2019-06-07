@@ -30,8 +30,8 @@ collections:
         widget: "object"
         required: false
         fields:
-          - {label: "Link text", name: "linkText", widget: "string", required: false}
-          - {label: "Link URL", name: "linkUrl", widget: "string", required: false}
+          - {label: "Link text", name: "linkText", widget: "string"}
+          - {label: "Link URL", name: "linkUrl", widget: "string"}
 
   - name: "section"
     label: "Section Page"
