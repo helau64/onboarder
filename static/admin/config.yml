@@ -54,3 +54,10 @@ collections:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
           - {label: Title, name: title, widget: string}
           - {label: "Body", name: "body", widget: "markdown"}
+      - file: "src/pages/complete/index.md"
+        label: "Complete Page"
+        name: "complete"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "complete-page"}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}

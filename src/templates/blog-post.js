@@ -23,7 +23,7 @@ export const BlogPostTemplate = ({
 
 
   return (
-    <section className="section">
+    <section className="page">
       <h1 className="title">{title}</h1>
       <PostContent content={content} className="content"/>
       {buttonLink}

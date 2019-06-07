@@ -3,9 +3,9 @@ import Layout from '../../components/Layout'
 
 export default () => (
   <Layout>
-    <section className="section">
-      <h1 class="title">Thanks!</h1>
-      <div class="content">
+    <section className="suggestions-page">
+      <h1 className="title">Thanks!</h1>
+      <div className="content">
       <p>Thank you submitting a suggestion and helping make this site even more useful for everyone.</p>
       </div>
     </section>

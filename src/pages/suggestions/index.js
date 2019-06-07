@@ -37,7 +37,7 @@ export default class Index extends React.Component {
     return (
       <Layout>
         <section className="suggestions-page">
-          <h1>Suggestions</h1>
+          <h1 className="title">Suggestions</h1>
           <div class="content">
             <p>Still have questions? Have an idea for something that should be added to the site? Submit them anonymously here.</p>
           </div>
