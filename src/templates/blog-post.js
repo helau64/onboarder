@@ -4,6 +4,7 @@ import {graphql} from 'gatsby'
 import Layout from '../components/Layout'
 import PageLink from '../components/PageLink'
 import Content, { HTMLContent } from '../components/Content'
+import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 
 export const BlogPostTemplate = ({
   content,
@@ -11,7 +12,8 @@ export const BlogPostTemplate = ({
   title,
   section, 
   id,
-  link
+  link,
+  image
 }) => {
   const PostContent = contentComponent || Content
 
@@ -21,11 +23,11 @@ export const BlogPostTemplate = ({
     buttonLink = <a href={link.linkUrl} target="_blank" rel="noopener noreferrer" className="button-link">{link.linkText ? link.linkText : "Go"}</a>
   }
 
-
   return (
     <section className="page">
       <h1 className="title">{title}</h1>
       <PostContent content={content} className="content"/>
+      {image ? <PreviewCompatibleImage imageInfo={image} /> : null}
       {buttonLink}
       <PageLink section={section} id={id} />
     </section>
@@ -39,6 +41,7 @@ BlogPostTemplate.propTypes = {
   section: PropTypes.string,
   id: PropTypes.string,
   link: PropTypes.object,
+  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
 }
 
 const BlogPost = ({ data }) => {
@@ -54,6 +57,7 @@ const BlogPost = ({ data }) => {
         title={post.frontmatter.title}
         section={post.frontmatter.section.id}
         link={post.frontmatter.link}
+        image={post.frontmatter.image}
       />
     </Layout>
   )
@@ -75,6 +79,13 @@ export const pageQuery = graphql`
       frontmatter {
         title
         order
+        image {
+          childImageSharp {
+            fluid(maxWidth: 2048, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
         link {
           linkText
           linkUrl

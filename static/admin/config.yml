@@ -23,6 +23,7 @@ collections:
         required: true
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Order", name: "order", widget: "number"}
+      - {label: Image, name: image, widget: image, required: false}
       - {label: "Body", name: "body", widget: "markdown"}
       - label: "Link"
         name: "link"
