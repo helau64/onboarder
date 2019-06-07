@@ -3,6 +3,7 @@ templateKey: blog-post
 title: Good to Know Post 2
 section: Good to Know
 order: 2
+image: /img/home-jumbotron.jpg
 ---
 
 Testing
