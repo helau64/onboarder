@@ -8,6 +8,9 @@
         }
     }
     .text-wrapper {
-        margin-top: 1em;
+        @include min-width(md) {
+            margin-top: 1em;
+        }
+        
     }
 }

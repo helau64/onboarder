@@ -35,6 +35,23 @@ class Navbar extends React.Component {
   render() {
     const { data } = this.props
     const { edges: pages } = data.allMarkdownRemark
+    let currentSection
+
+    let sections = pages
+
+    if (this.props.pageType === "SectionPageTemplate") {
+      currentSection = this.props.id
+    } else {
+      currentSection = this.props.section
+    }
+
+    sections.forEach(function(el) {
+      if (el.node.id === currentSection) {
+          el.node.currentSection = true
+      } else {
+        el.node.currentSection = false
+      }
+    })
     
     return (
       <nav
@@ -58,9 +75,9 @@ class Navbar extends React.Component {
             className={`navbar-menu ${this.state.navBarActiveClass}`}
           >
             <ul>
-              {pages &&
-                pages.map(({ node: page }) => (
-                  <li className="navbar-item" key={page.id}>
+              {sections &&
+                sections.map(({ node: page }) => (
+                  <li className={ page.currentSection ? "navbar-item active" : "navbar-item"} key={page.id}>
                     <Link to={page.fields.slug}>
                       <span>{page.frontmatter.title}</span>
                     </Link>
@@ -80,9 +97,12 @@ Navbar.propTypes = {
       edges: PropTypes.array,
     }),
   }),
+  section: PropTypes.string,
+  pageType: PropTypes.string,
+  id: PropTypes.string,
 }
 
-export default () => (
+export default props => (
   <StaticQuery
     query={graphql`
       query NavbarQuery {
@@ -105,6 +125,6 @@ export default () => (
         }
       }
     `}
-    render={(data, count) => <Navbar data={data} count={count} />}
+    render={(data) => <Navbar data={data} {...props} />}
   />
 )

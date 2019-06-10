@@ -1,9 +1,10 @@
 .navbar {
     margin-bottom: rem(20px);
+    .container {
+        position: relative;
+    }
     ul {
         @include unlist;
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
         li {
             text-align: center;
             border-top: 7px solid transparent;
@@ -17,7 +18,6 @@
             @include light;
             @include small;
             text-decoration: none;
-            padding: rem(20px) rem(5px);
             &:hover, &:focus, &:active {
                 span {
                     border-color: $black;
@@ -27,5 +27,86 @@
     }
     @include min-width(md) {
         margin-bottom: rem(80px);
+        ul {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+        }
+        li.active {
+            border-color: $black;
+        }
+        a {
+            padding: rem(20px) rem(5px);
+        }
     }
+}
+
+.navbar-menu {
+    @include max-width(md) {
+        display: none;
+        position: absolute;
+        background-color: white;
+        width: 100%;
+        padding-bottom: rem(20px);
+        &.is-active {
+            display: block;
+        }
+    }
+}
+
+.navbar-burger {
+    color: $black;
+    cursor: pointer;
+    display: block;
+    height: 3.25rem;
+    position: relative;
+    width: 3.25rem;
+    margin-left: auto;
+    @include min-width(md) {
+        display: none;
+    }
+}
+
+.navbar-burger span {
+    background-color: currentColor;
+    display: block;
+    height: 1px;
+    left: calc(50% - 8px);
+    position: absolute;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transition-duration: 86ms;
+    transition-duration: 86ms;
+    -webkit-transition-property: background-color,opacity,-webkit-transform;
+    transition-property: background-color,opacity,-webkit-transform;
+    transition-property: background-color,opacity,transform;
+    transition-property: background-color,opacity,transform,-webkit-transform;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    width: 16px
+}
+
+.navbar-burger span:first-child {
+    top: calc(50% - 6px)
+}
+
+.navbar-burger span:nth-child(2) {
+    top: calc(50% - 1px)
+}
+
+.navbar-burger span:nth-child(3) {
+    top: calc(50% + 4px)
+}
+
+.navbar-burger.is-active span:first-child {
+    -webkit-transform: translateY(5px) rotate(45deg);
+    transform: translateY(5px) rotate(45deg)
+}
+
+.navbar-burger.is-active span:nth-child(2) {
+    opacity: 0
+}
+
+.navbar-burger.is-active span:nth-child(3) {
+    -webkit-transform: translateY(-5px) rotate(-45deg);
+    transform: translateY(-5px) rotate(-45deg)
 }
