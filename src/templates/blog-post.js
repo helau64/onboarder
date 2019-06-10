@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {graphql} from 'gatsby'
 import Layout from '../components/Layout'
 import PageLink from '../components/PageLink'
+import PagesTicks from '../components/PagesTicks'
 import Content, { HTMLContent } from '../components/Content'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 
@@ -25,11 +26,18 @@ export const BlogPostTemplate = ({
 
   return (
     <section className="page">
+      <PagesTicks section={section} id={id} />
       <h1 className="title">{title}</h1>
-      <PostContent content={content} className="content"/>
-      {image ? <PreviewCompatibleImage imageInfo={image} /> : null}
-      {buttonLink}
-      <PageLink section={section} id={id} />
+      <div className="content-wrapper">
+        <div className="text-wrapper">
+          <PostContent content={content} className="content"/>
+          <div className="link-wrapper">
+            {buttonLink}
+            <PageLink section={section} id={id} />
+          </div>
+        </div>
+        {image ? <div className="image-wrapper"><PreviewCompatibleImage imageInfo={image} /></div> : null}
+      </div>
     </section>
   )
 }
@@ -81,7 +89,7 @@ export const pageQuery = graphql`
         order
         image {
           childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
+            fluid(maxWidth: 600, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }

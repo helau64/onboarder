@@ -1,4 +1,5 @@
 .navbar {
+    margin-bottom: rem(20px);
     ul {
         @include unlist;
         display: grid;
@@ -14,6 +15,7 @@
         a {
             display: block;
             @include light;
+            @include small;
             text-decoration: none;
             padding: rem(20px) rem(5px);
             &:hover, &:focus, &:active {
@@ -22,5 +24,8 @@
                 }
             }
         }
+    }
+    @include min-width(md) {
+        margin-bottom: rem(80px);
     }
 }

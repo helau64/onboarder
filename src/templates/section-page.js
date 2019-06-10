@@ -17,7 +17,9 @@ export const SectionPageTemplate = ({
     <section>
       <h1 className="title">{title}</h1>
       <PostContent content={content} className="content"/>
-      <SectionLink section={id}/>
+      <div className="link-wrapper">
+        <SectionLink section={id}/>
+      </div>
     </section>
   )
 }

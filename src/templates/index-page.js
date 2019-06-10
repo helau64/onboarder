@@ -17,7 +17,9 @@ export const IndexPageTemplate = ({
     <section className="index-page">
       <h1 className="title">{title}</h1>
       <PageContent className="content" content={content} />
-      <Link to={link} className="button-link">Get started</Link>
+      <div className="link-wrapper">
+        <Link to={link} className="button-link">Get started</Link>
+      </div>
     </section>
   )
 }
