@@ -10,7 +10,7 @@ class SectionLink extends React.Component {
       let link
 
       if (pages.length > 0) {
-        link = <Link to={pages[0].node.fields.slug} className="next-link">Next</Link>
+        link = <Link to={pages[0].node.fields.slug} className="button-link">Let's go</Link>
       } else {
         link = <p>
           There are no pages in this section. <Link to="/admin">Would you like to add some?</Link></p>
@@ -38,7 +38,7 @@ class SectionLink extends React.Component {
         query SectionLinksQuery {
           allMarkdownRemark(
             sort: { order: ASC, fields: [frontmatter___order] }
-            filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+            filter: { frontmatter: { templateKey: { eq: "info-page" } } }
           ) {
             edges {
               node {

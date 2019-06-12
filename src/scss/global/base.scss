@@ -10,7 +10,12 @@ body {
 }
 
 a {
-    color: $black;
+    color: currentColor;
+}
+
+.SectionPageTemplate {
+    background-color: $black;
+    color: white;
 }
 
 .title {
@@ -21,11 +26,11 @@ a {
     @include small;
     text-decoration: none;
     text-transform: uppercase;
-    color: $black;
+    color: currentColor;
     text-decoration: none;
     padding-bottom: 1px;
     &:hover, &:focus, &:active {
-        border-bottom: solid $black 2px;
+        border-bottom: solid currentColor 2px;
     }
 }
 
@@ -34,8 +39,8 @@ a {
     text-decoration: none;
     text-transform: uppercase;
     margin-right: rem(50px);
-    border: 2px solid $black;
+    border: 2px solid currentColor;
     border-radius: 23.5px;
-    padding: rem(15px) rem(20px) rem(13px);
+    padding: rem(15px) rem(25px) rem(13px);
     transition: background-color 0.25s, color 0.25s;
 }

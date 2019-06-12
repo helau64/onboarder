@@ -33,7 +33,7 @@ export default ContentsPage
 export const contentsPageQuery = graphql`
   query ContentsPageQuery {
     allMarkdownRemark(
-        filter: {frontmatter: {templateKey: {eq: "blog-post"}}}
+        filter: {frontmatter: {templateKey: {eq: "info-page"}}}
         sort: {
             fields: [frontmatter___order]
             order: ASC

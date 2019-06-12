@@ -1,5 +1,5 @@
 ---
-templateKey: blog-post
+templateKey: info-page
 section: Good to Know
 title: Good to Know Post 1
 order: 1

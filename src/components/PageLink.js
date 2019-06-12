@@ -51,7 +51,7 @@ class PageLink extends React.Component {
         query PageLinksQuery {
           pages: allMarkdownRemark(
             sort: { order: ASC, fields: [frontmatter___order] }
-            filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+            filter: { frontmatter: { templateKey: { eq: "info-page" } } }
           ) {
             edges {
               node {

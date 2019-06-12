@@ -46,7 +46,7 @@ class PagesTicks extends React.Component {
         query PagesTicksQuery {
           allMarkdownRemark(
             sort: { order: ASC, fields: [frontmatter___order] }
-            filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+            filter: { frontmatter: { templateKey: { eq: "info-page" } } }
           ) {
             edges {
               node {

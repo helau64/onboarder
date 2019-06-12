@@ -7,7 +7,7 @@ import PagesTicks from '../components/PagesTicks'
 import Content, { HTMLContent } from '../components/Content'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 
-export const BlogPostTemplate = ({
+export const InfoPageTemplate = ({
   content,
   contentComponent,
   title,
@@ -42,7 +42,7 @@ export const BlogPostTemplate = ({
   )
 }
 
-BlogPostTemplate.propTypes = {
+InfoPageTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
   title: PropTypes.string,
@@ -52,12 +52,12 @@ BlogPostTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
 }
 
-const BlogPost = ({ data }) => {
+const InfoPage = ({ data }) => {
   const { markdownRemark: post } = data
 
   return (
     <Layout>
-      <BlogPostTemplate
+      <InfoPageTemplate
         content={post.html}
         id={post.id}
         contentComponent={HTMLContent}
@@ -71,16 +71,16 @@ const BlogPost = ({ data }) => {
   )
 }
 
-BlogPost.propTypes = {
+InfoPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.object,
   }),
 }
 
-export default BlogPost
+export default InfoPage
 
 export const pageQuery = graphql`
-  query BlogPostByID($id: String!) {
+  query InfoPageByID($id: String!) {
     markdownRemark(id: { eq: $id }) {
       id
       html

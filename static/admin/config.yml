@@ -6,13 +6,13 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: "blog"
-    label: "Blog"
-    folder: "src/pages/blog"
+  - name: "info"
+    label: "Info"
+    folder: "src/pages/info"
     create: true
     slug: "{{section}}/{{slug}}"
     fields:
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "info-page"}
       - label: "Section"
         name: "section"
         widget: "relation"
