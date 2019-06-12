@@ -9,7 +9,7 @@ const ContentsPage = ({
 }) => (
   <Layout>
     <section className="contents-page">
-        <h1 class="title">Contents</h1>
+        <h1 className="title">Contents</h1>
         <ul className="contents-list">
             {group.map(section => (
             <li key={section.fieldValue}>

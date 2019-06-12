@@ -7,9 +7,15 @@ import useSiteMetadata from './SiteMetadata'
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
+
+    console.log(children.props)
+
+
   return (
     <div className={`${children.type.displayName} site-container`}>
-      <div class="site-content">
+      <div className="site-content" style={{
+        backgroundColor: children.props.bg ? children.props.bg : ''
+      }}>
         <Helmet>
           <html lang="en" />
           <title>{title}</title>
