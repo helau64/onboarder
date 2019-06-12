@@ -9,10 +9,11 @@ const ContentsPage = ({
 }) => (
   <Layout>
     <section className="contents-page">
+        <h1 class="title">Contents</h1>
         <ul className="contents-list">
             {group.map(section => (
             <li key={section.fieldValue}>
-                {section.fieldValue}
+                <h2>{section.fieldValue}</h2>
                 <ul>
                 {section.edges.map(page => (
                     <li key={page.node.id}>

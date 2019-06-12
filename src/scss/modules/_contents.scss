@@ -1,0 +1,12 @@
+.contents-page {
+    width: 100%;
+}
+.contents-list {
+    @include unlist;
+    ul {
+        @include unlist;
+        li + li {
+            margin-top: rem(10px);
+        }
+    }
+}
