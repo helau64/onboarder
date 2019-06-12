@@ -34,10 +34,6 @@ export const contentsPageQuery = graphql`
   query ContentsPageQuery {
     allMarkdownRemark(
         filter: {frontmatter: {templateKey: {eq: "info-page"}}}
-        sort: {
-            fields: [frontmatter___order]
-            order: ASC
-        }
     ) {
       group(field: frontmatter___section) {
         fieldValue
