@@ -7,7 +7,7 @@ public_folder: /img
 
 collections:
   - name: "info"
-    label: "Info"
+    label: "Info Pages"
     folder: "src/pages/info"
     create: true
     slug: "{{section}}/{{slug}}"
@@ -30,7 +30,6 @@ collections:
           - { label: "Light Green", value: "#E2F6F0" }
           - { label: "Bright Blue", value: "#2D7ADE" }
           - { label: "Light Blue", value: "#BEEAF8" }
-          - { label: "Dark Blue", value: "#272F42" }
           - { label: "Pink", value: "#EADDDD" }
           - { label: "Grey", value: "#F8F8F8" }
           - { label: "Yellow", value: "#FDFBE6" }

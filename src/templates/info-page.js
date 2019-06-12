@@ -49,7 +49,8 @@ InfoPageTemplate.propTypes = {
   section: PropTypes.string,
   id: PropTypes.string,
   link: PropTypes.object,
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  bg: PropTypes.string,
 }
 
 const InfoPage = ({ data }) => {
@@ -61,11 +62,11 @@ const InfoPage = ({ data }) => {
         content={post.html}
         id={post.id}
         contentComponent={HTMLContent}
-        description={post.frontmatter.description}
         title={post.frontmatter.title}
         section={post.frontmatter.section.id}
         link={post.frontmatter.link}
         image={post.frontmatter.image}
+        bg={post.frontmatter.bg}
       />
     </Layout>
   )
@@ -87,6 +88,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         order
+        bg
         image {
           childImageSharp {
             fluid(maxWidth: 600, quality: 100) {
