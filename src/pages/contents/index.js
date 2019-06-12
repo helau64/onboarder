@@ -39,7 +39,7 @@ export const contentsPageQuery = graphql`
             order: ASC
         }
     ) {
-        group(field: frontmatter___section) {
+        group(field: frontmatter___section___id) {
           fieldValue
           edges {
             node {

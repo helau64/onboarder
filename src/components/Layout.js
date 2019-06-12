@@ -8,9 +8,6 @@ import useSiteMetadata from './SiteMetadata'
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
 
-    console.log(children.props)
-
-
   return (
     <div className={`${children.type.displayName} site-container`}>
       <div className="site-content" style={{
