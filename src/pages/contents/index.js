@@ -39,21 +39,21 @@ export const contentsPageQuery = graphql`
             order: ASC
         }
     ) {
-        group(field: frontmatter___section) {
-          fieldValue
-          edges {
-            node {
-              id
-              fields {
-                  slug
-              }
-              frontmatter {
-                title
-                order
-              }
+      group(field: frontmatter___section) {
+        fieldValue
+        edges {
+          node {
+            id
+            fields {
+                slug
+            }
+            frontmatter {
+              title
+              order
             }
           }
         }
       }
+    }
   }
 `
