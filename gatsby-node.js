@@ -17,6 +17,12 @@ exports.createPages = ({ actions, graphql }) => {
             }
             frontmatter {
               templateKey
+              section {
+                id
+                fields {
+                  slug
+                }
+              }
             }
           }
         }
@@ -51,11 +57,43 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   fmImagesToRelative(node) // convert image paths for gatsby images
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
+    if (node.frontmatter.templateKey === 'info-page') {
+
+      const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœøṕŕßśșțùúüûǘẃẍÿź·/_,:;'
+      const b = 'aaaaaaaaceeeeghiiiimnnnooooooprssstuuuuuwxyz------'
+      const p = new RegExp(a.split('').join('|'), 'g')
+
+      let sectionSlug = `${node.frontmatter.section}`.toString().toLowerCase()
+          .replace(/\s+/g, '-') // Replace spaces with -
+          .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
+          .replace(/&/g, '-and-') // Replace & with ‘and’
+          .replace(/[^\w\-]+/g, '') // Remove all non-word characters
+          .replace(/\-\-+/g, '-') // Replace multiple - with single -
+          .replace(/^-+/, '') // Trim - from start of text
+          .replace(/-+$/, '') // Trim - from end of text
+
+      let filePath = createFilePath({ node, getNode})
+        .replace("info/", "")
+      createNodeField({
+        node,
+        name: `slug`,
+        value: `${sectionSlug}${filePath}`,
+      })
+    } else if (node.frontmatter.templateKey === 'section-page') {
+      let filePath = createFilePath({ node, getNode })
+        .replace("sections/", "")
+      createNodeField({
+        name: `slug`,
+        node,
+        value: filePath,
+      })
+    } else {
+      let filePath = createFilePath({ node, getNode })
+      createNodeField({
+        name: `slug`,
+        node,
+        value: filePath,
+      })
+    }
   }
 }

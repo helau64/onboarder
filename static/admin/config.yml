@@ -10,7 +10,7 @@ collections:
     label: "Info Pages"
     folder: "src/pages/info"
     create: true
-    slug: "{{section}}/{{slug}}"
+    slug: "{{slug}}"
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "info-page"}
       - label: "Section"
