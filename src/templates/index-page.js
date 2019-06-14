@@ -10,16 +10,18 @@ export const IndexPageTemplate = ({
   title,
   content, 
   contentComponent,
-  link
+  link,
+  publicTitle,
+  publicContent
 }) => {
   const PageContent = contentComponent || Content
 
   if (!isAuthenticated()) {
     return (
       <section className="index-page">
-        <h1 className="title">Hi</h1>
+        <h1 className="title">{publicTitle}</h1>
         <div className="content">
-          <p>Please log in to continue.</p>
+          {publicContent}
         </div>
         <div className="link-wrapper">
           <a
@@ -53,6 +55,8 @@ IndexPageTemplate.propTypes = {
   content: PropTypes.string,
   contentComponent: PropTypes.func,
   link: PropTypes.string,
+  publicTitle: PropTypes.string,
+  publicContent: PropTypes.string,
 }
 
 const IndexPage = ({ data }) => {
@@ -63,6 +67,8 @@ const IndexPage = ({ data }) => {
     <Layout>
       <IndexPageTemplate
         title={post.frontmatter.title}
+        publicTitle={post.frontmatter.publicTitle}
+        publicContent={post.frontmatter.publicContent}
         content={post.html}
         contentComponent={HTMLContent}
         link={link}
@@ -87,7 +93,9 @@ export const pageQuery = graphql`
     page: markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       html
       frontmatter {
-        title
+        title,
+        publicTitle,
+        publicContent
       }
     }
     sections: allMarkdownRemark(
