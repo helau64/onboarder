@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { login, logout, isAuthenticated } from "../utils/auth"
 
 const Footer = class extends React.Component {
   render() {
@@ -7,9 +8,23 @@ const Footer = class extends React.Component {
       <footer className="footer">
           <ul className="menu-list">
             <li>
-              <Link to="/" className="navbar-item">
-                Home
-              </Link>
+              {isAuthenticated() ? <a
+            href="#logout"
+            onClick={e => {
+              logout()
+              e.preventDefault()
+            }}
+          >
+            Log out
+          </a> : <a
+            href="#login"
+            onClick={e => {
+              login()
+              e.preventDefault()
+            }}
+          >
+            Log in
+          </a>}
             </li>
             <li>
               <Link to="/contents" className="navbar-item">

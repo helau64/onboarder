@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
+import { login, isAuthenticated } from "../utils/auth"
 
 export const CompletePageTemplate = ({ title, content, contentComponent }) => {
   const PageContent = contentComponent || Content
@@ -23,6 +24,17 @@ CompletePageTemplate.propTypes = {
 
 const CompletePage = ({ data }) => {
   const { markdownRemark: post } = data
+
+  if (!isAuthenticated()) {
+    login()
+    return (
+      <Layout>
+        <section className="complete-page">
+          <p>Redirecting to login...</p>
+        </section>
+      </Layout>
+    )
+  }
 
   return (
     <Layout>

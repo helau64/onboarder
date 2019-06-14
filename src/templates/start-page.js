@@ -4,41 +4,20 @@ import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
-import { login, isAuthenticated } from "../utils/auth"
+import { handleAuthentication, login, isAuthenticated } from "../utils/auth"
 
-export const IndexPageTemplate = ({
+export const StartPageTemplate = ({
   title,
   content, 
   contentComponent,
   link
 }) => {
+  handleAuthentication()
+
   const PageContent = contentComponent || Content
 
-  if (!isAuthenticated()) {
-    return (
-      <section className="index-page">
-        <h1 className="title">Hi</h1>
-        <div className="content">
-          <p>Please log in to continue.</p>
-        </div>
-        <div className="link-wrapper">
-          <a
-            className="button-link"
-            href="#login"
-            onClick={e => {
-              login()
-              e.preventDefault()
-            }}
-          >
-            Log in
-          </a>
-        </div>
-      </section>
-    )
-  }
-
   return (
-    <section className="index-page">
+    <section className="start-page">
       <h1 className="title">{title}</h1>
       <PageContent className="content" content={content} />
       <div className="link-wrapper">
@@ -48,20 +27,31 @@ export const IndexPageTemplate = ({
   )
 }
 
-IndexPageTemplate.propTypes = {
+StartPageTemplate.propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
   contentComponent: PropTypes.func,
   link: PropTypes.string,
 }
 
-const IndexPage = ({ data }) => {
+const StartPage = ({ data }) => {
   const { page: post } = data
   const link = data.sections.edges[0].node.fields.slug
 
+  if (!isAuthenticated()) {
+    login()
+    return (
+      <Layout>
+        <section className="start-page">
+          <p>Redirecting to login...</p>
+        </section>
+      </Layout>
+    )
+  }
+
   return (
     <Layout>
-      <IndexPageTemplate
+      <StartPageTemplate
         title={post.frontmatter.title}
         content={post.html}
         contentComponent={HTMLContent}
@@ -71,7 +61,7 @@ const IndexPage = ({ data }) => {
   )
 }
 
-IndexPage.propTypes = {
+StartPage.propTypes = {
   data: PropTypes.shape({
     page: PropTypes.object.isRequired,
     sections: PropTypes.shape({
@@ -80,11 +70,11 @@ IndexPage.propTypes = {
   }),
 }
 
-export default IndexPage
+export default StartPage
 
 export const pageQuery = graphql`
-  query IndexPageTemplate {
-    page: markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+  query StartPageTemplate {
+    page: markdownRemark(frontmatter: { templateKey: { eq: "start-page" } }) {
       html
       frontmatter {
         title

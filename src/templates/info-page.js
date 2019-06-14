@@ -6,6 +6,7 @@ import PageLink from '../components/PageLink'
 import PagesTicks from '../components/PagesTicks'
 import Content, { HTMLContent } from '../components/Content'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
+import { login, isAuthenticated } from "../utils/auth"
 
 export const InfoPageTemplate = ({
   content,
@@ -55,6 +56,17 @@ InfoPageTemplate.propTypes = {
 
 const InfoPage = ({ data }) => {
   const { markdownRemark: post } = data
+
+  if (!isAuthenticated()) {
+    login()
+    return (
+      <Layout>
+        <section className="page">
+          <p>Redirecting to login...</p>
+        </section>
+      </Layout>
+    )
+  }
 
   return (
     <Layout>
