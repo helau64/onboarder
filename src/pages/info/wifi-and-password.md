@@ -5,6 +5,8 @@ title: Wifi and Password
 bg: '#E2F6F0'
 order: 1
 image: /img/test.png
-link: {}
+link:
+  linkText: 'null'
+  linkUrl: 'null'
 ---
 Wifi: **Production5**
