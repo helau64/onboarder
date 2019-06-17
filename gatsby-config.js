@@ -7,8 +7,6 @@ module.exports = {
       'This repo contains the onboarding process for new employees at Hactar. It is built in Gatsby, with Netlify CMS and Auth0',
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sass',
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
@@ -31,8 +29,8 @@ module.exports = {
         name: 'images',
       },
     },
-    'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -61,6 +59,8 @@ module.exports = {
         ],
       },
     },
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sass',
     {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
