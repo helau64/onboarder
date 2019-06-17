@@ -5,16 +5,8 @@ import Navbar from '../components/Navbar'
 import '../scss/main.scss'
 import useSiteMetadata from './SiteMetadata'
 
-import { setConfig } from 'react-hot-loader'
-import IdentityModal, { useIdentityContext} from "react-netlify-identity-widget"
-
-setConfig({ disableHotRenderer: true })
-
 const TemplateWrapper = ({ children }) => {
-  const identity = useIdentityContext();
   const { title, description } = useSiteMetadata()
-  
-  console.log(JSON.stringify(identity))
   return (
     <div className={`${children.type.displayName} site-container`} style={{
       backgroundColor: children.props.bg ? children.props.bg : ''

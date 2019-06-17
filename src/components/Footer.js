@@ -1,30 +1,23 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import IdentityModal, { useIdentityContext} from "react-netlify-identity-widget"
+import { setConfig } from 'react-hot-loader'
 
-const Footer = class extends React.Component {
-  render() {
+setConfig({ disableHotRenderer: true })
+
+const Footer = () => {
+    const identity = useIdentityContext();
+    const isLoggedIn = identity && identity.isLoggedIn
+    const [dialog, setDialog] = React.useState(false)
     return (
+      <>
       <footer className="footer">
           <ul className="menu-list">
-            {/* <li>
-              {isAuthenticated() ? <a
-            href="#logout"
-            onClick={e => {
-              logout()
-              e.preventDefault()
-            }}
-          >
-            Log out
-          </a> : <a
-            href="#login"
-            onClick={e => {
-              login()
-              e.preventDefault()
-            }}
-          >
-            Log in
-          </a>}
-            </li> */}
+            <li>
+            <button onClick={() => setDialog(true)}>
+              {isLoggedIn ? "Log out" : "Log in"}
+            </button>
+            </li>
             <li>
               <Link to="/contents" className="navbar-item">
                 Contents
@@ -47,8 +40,9 @@ const Footer = class extends React.Component {
             </li>
           </ul>
       </footer>
+      <IdentityModal showDialog={dialog} onCloseDialog={() => setDialog(false)} />
+      </>
     )
-  }
 }
 
 export default Footer
