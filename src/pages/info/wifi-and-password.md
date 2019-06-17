@@ -4,7 +4,7 @@ section: Good to Know
 title: Wifi and Password
 bg: '#E2F6F0'
 order: 1
-image: /img/test.png
+image: /img/apple-touch-icon.png
 link:
   linkText: 'null'
   linkUrl: 'null'
