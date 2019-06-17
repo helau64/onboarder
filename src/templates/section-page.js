@@ -4,7 +4,6 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import SectionLink from '../components/SectionLink'
 import Content, { HTMLContent } from '../components/Content'
-import { login, isAuthenticated } from "../utils/auth"
 
 export const SectionPageTemplate = ({
   content,
@@ -34,17 +33,6 @@ SectionPageTemplate.propTypes = {
 
 const SectionPage = ({ data, test }) => {
   const { markdownRemark: post } = data
-
-  if (!isAuthenticated()) {
-    login()
-    return (
-      <Layout>
-        <section className="section-page">
-          <p>Redirecting to login...</p>
-        </section>
-      </Layout>
-    )
-  }
 
   return (
     <Layout>

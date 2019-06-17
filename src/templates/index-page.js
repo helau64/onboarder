@@ -4,7 +4,6 @@ import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
-import { login, isAuthenticated } from "../utils/auth"
 
 export const IndexPageTemplate = ({
   title,
@@ -15,29 +14,6 @@ export const IndexPageTemplate = ({
   publicContent
 }) => {
   const PageContent = contentComponent || Content
-
-  if (!isAuthenticated()) {
-    return (
-      <section className="index-page">
-        <h1 className="title">{publicTitle}</h1>
-        <div className="content">
-          {publicContent}
-        </div>
-        <div className="link-wrapper">
-          <a
-            className="button-link"
-            href="#login"
-            onClick={e => {
-              login()
-              e.preventDefault()
-            }}
-          >
-            Log in
-          </a>
-        </div>
-      </section>
-    )
-  }
 
   return (
     <section className="index-page">
