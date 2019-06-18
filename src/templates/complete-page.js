@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
+
 import { Redirect } from '@reach/router'
 import { useIdentityContext} from "react-netlify-identity-widget"
 
