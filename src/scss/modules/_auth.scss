@@ -1,0 +1,39 @@
+reach-portal {
+    .header {
+        button {
+            background-color: white !important;
+            pointer-events: none;
+        }
+        button[aria-selected=false] {
+            display: none;
+        }
+    }
+    .btnClose {
+        width: 25px;
+        height: 25px;
+        transition: background-color 0.25s, color 0.25s;
+        &:before {
+            line-height: 20px;
+            position: relative;
+            left: 1px;
+        }
+    }
+    .infoTextEmail {
+        display: none;
+    }
+    .infoText {
+        font-size: 1px;
+        letter-spacing: -1px;
+        color: transparent;
+        &:after {
+            @include base;
+            letter-spacing: normal;
+            color: $black;
+            content: "You are logged in"
+        }
+    }
+    pre {
+        @include small;
+        text-align: center;
+    }
+}

@@ -17,4 +17,15 @@
             }
         }
     }
+    button {
+        @include light;
+        @include small;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        &:hover, &:focus, &:active {
+            border-bottom: 1px solid $black;
+        }
+    }
 }

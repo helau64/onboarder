@@ -2,17 +2,16 @@
     .title, .content {
         max-width: $text-width_lg;
     }
+    button {
+        padding: rem(15px) rem(30px) rem(13px) !important;
+        margin-top: rem(20px);
+    }
 }
 
 label {
     @include small;
     display: block;
     margin-bottom: rem(5px);
-}
-
-button {
-    padding: rem(15px) rem(30px) rem(13px) !important;
-    margin-top: rem(20px);
 }
 
 textarea {
