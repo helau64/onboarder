@@ -6,7 +6,7 @@ bg: '#E2F6F0'
 order: 1
 image: /img/test.png
 link:
-  linkText: '""'
-  linkUrl: '""'
+  linkText: null
+  linkUrl: null
 ---
 Wifi: **Production5**
