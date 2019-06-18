@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
+import IdentityModal, { useIdentityContext} from "react-netlify-identity-widget"
 
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
@@ -13,7 +14,30 @@ export const IndexPageTemplate = ({
   publicTitle,
   publicContent
 }) => {
+  const identity = useIdentityContext();
+  const isLoggedIn = identity && identity.isLoggedIn
+  const [dialog, setDialog] = React.useState(false)
+
   const PageContent = contentComponent || Content
+
+  if (!isLoggedIn) {
+    return (
+      <>
+        <section className="index-page">
+          <h1 className="title">{publicTitle}</h1>
+          <div className="content">
+            {publicContent}
+          </div>
+          <div className="link-wrapper">
+            <button className="button-link" onClick={() => setDialog(true)}>
+              Log in
+            </button>
+          </div>
+        </section>
+        <IdentityModal showDialog={dialog} onCloseDialog={() => setDialog(false)} />
+      </>
+    )
+  }
 
   return (
     <section className="index-page">

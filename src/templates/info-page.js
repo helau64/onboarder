@@ -6,6 +6,9 @@ import PageLink from '../components/PageLink'
 import PagesTicks from '../components/PagesTicks'
 import Content, { HTMLContent } from '../components/Content'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
+import { Redirect } from '@reach/router'
+import { useIdentityContext} from "react-netlify-identity-widget"
+
 export const InfoPageTemplate = ({
   content,
   contentComponent,
@@ -16,6 +19,15 @@ export const InfoPageTemplate = ({
   image
 }) => {
   const PostContent = contentComponent || Content
+
+  const identity = useIdentityContext();
+  const isLoggedIn = identity && identity.isLoggedIn
+
+  if (!isLoggedIn) {
+    return (
+      <Redirect to="/" />
+    )
+  }
 
   let buttonLink
 

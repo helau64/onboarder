@@ -3,9 +3,19 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
+import { Redirect } from '@reach/router'
+import { useIdentityContext} from "react-netlify-identity-widget"
 
 export const CompletePageTemplate = ({ title, content, contentComponent }) => {
   const PageContent = contentComponent || Content
+  const identity = useIdentityContext();
+  const isLoggedIn = identity && identity.isLoggedIn
+
+  if (!isLoggedIn) {
+    return (
+      <Redirect to="/" />
+    )
+  }
 
   return (
     <section className="complete-page">
