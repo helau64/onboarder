@@ -16,3 +16,18 @@
         max-width: rem(735px);
     }
 }
+
+.SectionPageTemplate {
+    .line {
+        color: white;
+    }
+    @include min-width(md) {
+        .navbar-item {
+            opacity: 0.5;
+            transition: opacity 0.25s;
+            &:hover, &:focus, &:active {
+                opacity: 1;
+            }
+        }
+    }
+}

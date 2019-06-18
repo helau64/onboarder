@@ -4,6 +4,7 @@ import {graphql} from 'gatsby'
 import Layout from '../components/Layout'
 import PageLink from '../components/PageLink'
 import PagesTicks from '../components/PagesTicks'
+import PagesIndex from '../components/PagesIndex'
 import Content, { HTMLContent } from '../components/Content'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import { Redirect } from '@reach/router'
@@ -38,7 +39,10 @@ export const InfoPageTemplate = ({
   return (
     <section className="page">
       <PagesTicks section={section} id={id} />
-      <h1 className="title">{title}</h1>
+      <h1 className="title">
+        <PagesIndex section={section} id={id} />
+        {title}
+      </h1>
       <div className="content-wrapper">
         <div className="text-wrapper">
           <PostContent content={content} className="content"/>

@@ -4,6 +4,7 @@
     float: left;
     margin-top: 0.5em;
     margin-right: rem(50px);
+    height: 100%;
     li {
         margin-bottom: rem(25px);
     }
@@ -20,5 +21,8 @@
     }
     @include min-width(md) {
         margin-right: rem(100px);
+    }
+    @include max-width(md) {
+        display: none;
     }
 }

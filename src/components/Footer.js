@@ -14,7 +14,7 @@ const Footer = () => {
       <footer className="footer">
           <ul className="menu-list">
             <li>
-            <button onClick={() => setDialog(true)}>
+            <button className="navbar-item" onClick={() => setDialog(true)}>
               {isLoggedIn ? "Log out" : "Log in"}
             </button>
             </li>

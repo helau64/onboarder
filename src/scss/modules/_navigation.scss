@@ -18,9 +18,12 @@
             @include light;
             @include small;
             text-decoration: none;
+            @include max-width(md) {
+                color: $black;
+            }
             &:hover, &:focus, &:active {
                 span {
-                    border-color: $black;
+                    border-color: currentColor;
                 }
             }
         }
@@ -32,7 +35,7 @@
             grid-template-columns: repeat(8, 1fr);
         }
         li.active {
-            border-color: $black;
+            border-color: currentColor;
         }
         a {
             padding: rem(20px) rem(5px);
@@ -46,7 +49,7 @@
         position: absolute;
         background-color: white;
         width: 100%;
-        padding-bottom: rem(20px);
+        padding: rem(20px);
         &.is-active {
             display: block;
         }
