@@ -34,7 +34,11 @@ const TemplateWrapper = ({ children }) => {
             href="/img/favicon-16x16.png"
             sizes="16x16"
           />
-
+          <link rel="icon" 
+            type="image/png" 
+            href="/img/favicon.ico" 
+            sizes="16x16"
+          />
           <link
             rel="mask-icon"
             href="/img/safari-pinned-tab.png"
