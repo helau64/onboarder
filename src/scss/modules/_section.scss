@@ -18,7 +18,12 @@
 }
 
 .SectionPageTemplate {
+    background-color: $black;
+    color: white;
     .line {
+        color: white;
+    }
+    .button-link {
         color: white;
     }
     @include min-width(md) {
