@@ -4,9 +4,15 @@ import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import '../scss/main.scss'
 import useSiteMetadata from './SiteMetadata'
+import IdentityModal, { useIdentityContext} from "react-netlify-identity-widget"
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
+
+  const identity = useIdentityContext();
+  const isLoggedIn = identity && identity.isLoggedIn
+  const [dialog, setDialog] = React.useState(false)
+
   return (
     <div className={`${children.type.name} site-container`} style={{
       backgroundColor: children.props.bg ? children.props.bg : ''
@@ -52,7 +58,26 @@ const TemplateWrapper = ({ children }) => {
           <meta property="og:image" content="/img/og-image.jpg" />
         </Helmet>
         <Navbar section={children.props.section} id={children.props.id} pageType={children.type.displayName}/>
-        <main>{children}</main>
+        <main>
+          {isLoggedIn ? 
+            {children}
+            : 
+            <>
+              <section className="index-page">
+                <h1 className="title">Hi there!</h1>
+                <div className="content">
+                  <p>Please log in to continue</p>
+                  </div>
+                <div className="link-wrapper">
+                  <button className="button-link" onClick={() => setDialog(true)}>
+                    Log in
+                  </button>
+                </div>
+              </section>
+              <IdentityModal showDialog={dialog} onCloseDialog={() => setDialog(false)} />
+            </>
+          }
+        </main>
         <Footer />
       </div>
     </div>

@@ -7,8 +7,6 @@ import PagesTicks from '../components/PagesTicks'
 import PagesIndex from '../components/PagesIndex'
 import Content, { HTMLContent } from '../components/Content'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
-// import { Redirect } from '@reach/router'
-// import { useIdentityContext} from "react-netlify-identity-widget"
 
 export const InfoPageTemplate = ({
   content,
@@ -20,16 +18,6 @@ export const InfoPageTemplate = ({
   image
 }) => {
   const PostContent = contentComponent || Content
-
-  // const identity = useIdentityContext();
-  // const isLoggedIn = identity && identity.isLoggedIn
-
-  // if (!isLoggedIn) {
-  //   return (
-  //     <Redirect to="/" />
-  //   )
-  // }
-
   let buttonLink
 
   if (link && link.linkUrl) {
