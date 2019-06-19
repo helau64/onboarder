@@ -45,7 +45,7 @@ collections:
           - {label: "Link URL", name: "linkUrl", widget: "string", required: false}
 
   - name: "section"
-    label: "Section Page"
+    label: "Section Pages"
     folder: "src/pages/sections"
     create: true
     slug: "{{slug}}"
@@ -57,7 +57,7 @@ collections:
       
       
   - name: "pages"
-    label: "Pages"
+    label: "Other Pages"
     files:
       - file: "src/pages/index.md"
         label: "Home Page"
