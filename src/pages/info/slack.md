@@ -5,8 +5,8 @@ title: Slack
 bg: '#F8F8F8'
 order: 3
 link:
-  linkText: Download Slack
-  linkUrl: 'https://slack.com/intl/en-gb/downloads/mac'
+  linkText: ''
+  linkUrl: ''
 ---
 We use Slack to communicate with each other, with clients and with freelancers. Our workspace is called [hactar.slack.com](hactar.slack.com).
 
