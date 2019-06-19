@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
-import IdentityModal, { useIdentityContext} from "react-netlify-identity-widget"
 
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
@@ -10,34 +9,10 @@ export const IndexPageTemplate = ({
   title,
   content, 
   contentComponent,
-  link,
-  publicTitle,
-  publicContent
+  link
 }) => {
-  const identity = useIdentityContext();
-  const isLoggedIn = identity && identity.isLoggedIn
-  const [dialog, setDialog] = React.useState(false)
 
   const PageContent = contentComponent || Content
-
-  if (!isLoggedIn) {
-    return (
-      <>
-        <section className="index-page">
-          <h1 className="title">{publicTitle}</h1>
-          <div className="content">
-            {publicContent}
-          </div>
-          <div className="link-wrapper">
-            <button className="button-link" onClick={() => setDialog(true)}>
-              Log in
-            </button>
-          </div>
-        </section>
-        <IdentityModal showDialog={dialog} onCloseDialog={() => setDialog(false)} />
-      </>
-    )
-  }
 
   return (
     <section className="index-page">
@@ -55,8 +30,6 @@ IndexPageTemplate.propTypes = {
   content: PropTypes.string,
   contentComponent: PropTypes.func,
   link: PropTypes.string,
-  publicTitle: PropTypes.string,
-  publicContent: PropTypes.string,
 }
 
 const IndexPage = ({ data }) => {
@@ -67,8 +40,6 @@ const IndexPage = ({ data }) => {
     <Layout>
       <IndexPageTemplate
         title={post.frontmatter.title}
-        publicTitle={post.frontmatter.publicTitle}
-        publicContent={post.frontmatter.publicContent}
         content={post.html}
         contentComponent={HTMLContent}
         link={link}
@@ -93,9 +64,7 @@ export const pageQuery = graphql`
     page: markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       html
       frontmatter {
-        title,
-        publicTitle,
-        publicContent
+        title
       }
     }
     sections: allMarkdownRemark(

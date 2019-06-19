@@ -4,8 +4,6 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import SectionLink from '../components/SectionLink'
 import Content, { HTMLContent } from '../components/Content'
-import { Redirect } from '@reach/router'
-import { useIdentityContext} from "react-netlify-identity-widget"
 
 export const SectionPageTemplate = ({
   content,
@@ -14,15 +12,6 @@ export const SectionPageTemplate = ({
   id
 }) => {
   const PostContent = contentComponent || Content
-
-  const identity = useIdentityContext();
-  const isLoggedIn = identity && identity.isLoggedIn
-
-  if (!isLoggedIn) {
-    return (
-      <Redirect to="/" />
-    )
-  }
 
   return (
     <section>

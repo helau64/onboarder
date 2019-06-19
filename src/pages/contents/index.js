@@ -2,21 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
 import Layout from '../../components/Layout'
-import { Redirect } from '@reach/router'
-import { useIdentityContext} from "react-netlify-identity-widget"
 
 export const ContentsPageTemplate = ({
   sections,
   pages
 }) => {
-  const identity = useIdentityContext();
-  const isLoggedIn = identity && identity.isLoggedIn
-
-  if (!isLoggedIn) {
-    return (
-      <Redirect to="/" />
-    )
-  }
 
   let groupedPages = []
 
