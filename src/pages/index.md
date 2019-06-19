@@ -1,7 +1,5 @@
 ---
 templateKey: index-page
-publicTitle: Hi there!
-publicContent: Please log in to continue.
 title: Welcome to the family
 ---
 We are so happy to have you and to show you how much we mean it we've made this minisite for you to know what's going on as soon as you get here. Lucky you!
