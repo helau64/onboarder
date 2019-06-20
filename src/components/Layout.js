@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Helmet from 'react-helmet'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
@@ -12,6 +12,10 @@ export default function TemplateWrapper({ children }) {
 
   const [isLoggedIn, setIsLoggedIn] = useState(identity && identity.isLoggedIn)
   const [dialog, setDialog] = useState(false)
+
+  useEffect(() => {
+    setIsLoggedIn(identity && identity.isLoggedIn)
+  })
 
   return (
     <div className={`${children.type.name} site-container`} style={{
@@ -67,9 +71,9 @@ export default function TemplateWrapper({ children }) {
             <div>
               <section>
                 <h1 className="title">Hi there!</h1>
-                <div className="content">
+                <div>
                   <p>Please log in to continue</p>
-                  </div>
+                </div>
                 <div className="link-wrapper">
                   <button className="button-link" onClick={() => setDialog(true)}>
                     Log in
