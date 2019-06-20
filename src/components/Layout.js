@@ -7,11 +7,11 @@ import useSiteMetadata from './SiteMetadata'
 import IdentityModal, { useIdentityContext} from "react-netlify-identity-widget"
 
 const TemplateWrapper = ({ children }) => {
-  const { title, description } = useSiteMetadata()
-
   const identity = useIdentityContext();
   const isLoggedIn = identity && identity.isLoggedIn
   const [dialog, setDialog] = React.useState(false)
+
+  const { title, description } = useSiteMetadata()
 
   return (
     <div className={`${children.type.name} site-container`} style={{
@@ -60,7 +60,9 @@ const TemplateWrapper = ({ children }) => {
         <Navbar section={children.props.section} id={children.props.id} pageType={children.type.displayName}/>
         <main>
           {isLoggedIn ? 
-            {children}
+            <>
+              {children}
+            </>
             : 
             <>
               <section className="index-page">
