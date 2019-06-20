@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
@@ -65,8 +65,8 @@ export default function TemplateWrapper({ children }) {
               {children}
             </div>
             : 
-            <div>
-              <section>
+            <>
+              <section className="login-page">
                 <h1 className="title">Hi there!</h1>
                 <div class="content">
                   <p>Please log in to continue</p>
@@ -78,7 +78,7 @@ export default function TemplateWrapper({ children }) {
                 </div>
               </section>
               <IdentityModal showDialog={dialog} onCloseDialog={() => setDialog(false)} />
-            </div>
+            </>
           }
         </main>
         <Footer />
@@ -86,5 +86,3 @@ export default function TemplateWrapper({ children }) {
     </div>
   )
 }
-
-// export default TemplateWrapper
