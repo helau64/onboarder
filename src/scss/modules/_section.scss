@@ -1,4 +1,4 @@
-.section-template {
+.SectionPageTemplate {
     background-color: $black;
     color: white;
     a {
@@ -15,11 +15,6 @@
         margin-left: rem(120px);
         max-width: rem(735px);
     }
-}
-
-.SectionPageTemplate {
-    background-color: $black;
-    color: white;
     .line {
         color: white;
     }
