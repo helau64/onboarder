@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import '../scss/main.scss'
@@ -10,12 +10,9 @@ export default function TemplateWrapper({ children }) {
   const identity = useIdentityContext()
   const { title, description } = useSiteMetadata()
 
-  const [isLoggedIn, setIsLoggedIn] = useState(identity && identity.isLoggedIn)
-  const [dialog, setDialog] = useState(false)
+  const isLoggedIn = identity && identity.isLoggedIn
 
-  useEffect(() => {
-    setIsLoggedIn(identity && identity.isLoggedIn)
-  })
+  const [dialog, setDialog] = useState(false)
 
   return (
     <div className={`${children.type.name} site-container`} style={{
@@ -71,7 +68,7 @@ export default function TemplateWrapper({ children }) {
             <div>
               <section>
                 <h1 className="title">Hi there!</h1>
-                <div>
+                <div class="content">
                   <p>Please log in to continue</p>
                 </div>
                 <div className="link-wrapper">
