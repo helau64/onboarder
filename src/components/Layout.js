@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Helmet from 'react-helmet'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
@@ -6,12 +6,12 @@ import '../scss/main.scss'
 import useSiteMetadata from './SiteMetadata'
 import IdentityModal, { useIdentityContext} from "react-netlify-identity-widget"
 
-const TemplateWrapper = ({ children }) => {
-  const identity = useIdentityContext();
-  const isLoggedIn = identity && identity.isLoggedIn
-  const [dialog, setDialog] = React.useState(false)
-
+export default function TemplateWrapper({ children }) {
+  const identity = useIdentityContext()
   const { title, description } = useSiteMetadata()
+
+  const [isLoggedIn, setIsLoggedIn] = useState(identity && identity.isLoggedIn)
+  const [dialog, setDialog] = useState(false)
 
   return (
     <div className={`${children.type.name} site-container`} style={{
@@ -60,11 +60,11 @@ const TemplateWrapper = ({ children }) => {
         <Navbar section={children.props.section} id={children.props.id} pageType={children.type.displayName}/>
         <main>
           {isLoggedIn ? 
-            <>
+            <div>
               {children}
-            </>
+            </div>
             : 
-            <>
+            <div>
               <section>
                 <h1 className="title">Hi there!</h1>
                 <div className="content">
@@ -77,7 +77,7 @@ const TemplateWrapper = ({ children }) => {
                 </div>
               </section>
               <IdentityModal showDialog={dialog} onCloseDialog={() => setDialog(false)} />
-            </>
+            </div>
           }
         </main>
         <Footer />
@@ -86,4 +86,4 @@ const TemplateWrapper = ({ children }) => {
   )
 }
 
-export default TemplateWrapper
+// export default TemplateWrapper
