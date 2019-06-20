@@ -3,11 +3,7 @@
     h1 {
         @include h2;
         margin-top: 0;
-        span {
-            display: block;
-            @include small;
-            @include light;
-        }
+        
         @include min-width(md) {
             margin: 0;
         }
@@ -18,4 +14,10 @@
         }
         
     }
+}
+
+.pages-index {
+    display: block;
+    @include small;
+    @include light;
 }

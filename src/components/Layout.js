@@ -65,7 +65,7 @@ const TemplateWrapper = ({ children }) => {
             </>
             : 
             <>
-              <section className="index-page">
+              <section>
                 <h1 className="title">Hi there!</h1>
                 <div className="content">
                   <p>Please log in to continue</p>

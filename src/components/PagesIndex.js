@@ -12,7 +12,7 @@ class PagesIndex extends React.Component {
       let currentPage = sectionPages.findIndex(page => page.node.id === id) + 1
 
       return (
-          <span>{currentPage}/{sectionPages.length}</span>
+          <span className="pages-index">{currentPage}/{sectionPages.length}</span>
       )
     }
   }
