@@ -15,7 +15,8 @@ export const InfoPageTemplate = ({
   section, 
   id,
   link,
-  image
+  image,
+  templateKey
 }) => {
   const PostContent = contentComponent || Content
   let buttonLink
@@ -54,6 +55,7 @@ InfoPageTemplate.propTypes = {
   link: PropTypes.object,
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   bg: PropTypes.string,
+  templateKey: PropTypes.string,
 }
 
 const InfoPage = ({ data }) => {
@@ -70,6 +72,7 @@ const InfoPage = ({ data }) => {
         link={post.frontmatter.link}
         image={post.frontmatter.image}
         bg={post.frontmatter.bg}
+        templateKey={post.frontmatter.templateKey}
       />
     </Layout>
   )
@@ -89,6 +92,7 @@ export const pageQuery = graphql`
       id
       html
       frontmatter {
+        templateKey
         title
         order
         bg

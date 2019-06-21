@@ -9,7 +9,8 @@ export const SectionPageTemplate = ({
   content,
   contentComponent,
   title,
-  id
+  id,
+  templateKey
 }) => {
   const PostContent = contentComponent || Content
 
@@ -29,6 +30,7 @@ SectionPageTemplate.propTypes = {
   contentComponent: PropTypes.func,
   title: PropTypes.string,
   id: PropTypes.string,
+  templateKey: PropTypes.string,
 }
 
 const SectionPage = ({ data, test }) => {
@@ -41,6 +43,7 @@ const SectionPage = ({ data, test }) => {
         content={post.html}
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
+        templateKey={post.frontmatter.templateKey}
       />
     </Layout>
   )
@@ -60,7 +63,8 @@ export const pageQuery = graphql`
       id
       html
       frontmatter {
-        title
+        title,
+        templateKey
       }
     }
   }

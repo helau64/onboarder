@@ -9,7 +9,8 @@ export const IndexPageTemplate = ({
   title,
   content, 
   contentComponent,
-  link
+  link,
+  templateKey
 }) => {
 
   const PageContent = contentComponent || Content
@@ -30,6 +31,7 @@ IndexPageTemplate.propTypes = {
   content: PropTypes.string,
   contentComponent: PropTypes.func,
   link: PropTypes.string,
+  templateKey: PropTypes.string
 }
 
 const IndexPage = ({ data }) => {
@@ -43,6 +45,7 @@ const IndexPage = ({ data }) => {
         content={post.html}
         contentComponent={HTMLContent}
         link={link}
+        templateKey={post.frontmatter.templateKey}
       />
     </Layout>
   )
@@ -65,6 +68,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        templateKey
       }
     }
     sections: allMarkdownRemark(

@@ -5,7 +5,8 @@ import Layout from '../../components/Layout'
 
 export const ContentsPageTemplate = ({
   sections,
-  pages
+  pages,
+  templateKey
 }) => {
 
   let groupedPages = []
@@ -14,14 +15,12 @@ export const ContentsPageTemplate = ({
     groupedPages.push(pages.filter(page => page.node.frontmatter.section.id === section.node.id))
   })
 
-  
-
   return (
     <section className="contents-page">
         <h1 className="title">Contents</h1>
         <ul className="contents-list">
           {sections.map((section, index) =>
-            <li>
+            <li key={index}>
               <h2>{section.node.frontmatter.title}</h2>
               <ul>
                 {groupedPages[index].map((page) =>
@@ -40,7 +39,8 @@ export const ContentsPageTemplate = ({
 
 ContentsPageTemplate.propTypes = {
   sections: PropTypes.array,
-  pages: PropTypes.array
+  pages: PropTypes.array,
+  templateKey: PropTypes.string
 }
 
 const ContentsPage = ({ data }) => {
@@ -52,6 +52,7 @@ const ContentsPage = ({ data }) => {
       <ContentsPageTemplate
         sections={sections}
         pages={pages}
+        templateKey="contents-page"
       />
     </Layout>
   )

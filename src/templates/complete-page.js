@@ -17,6 +17,7 @@ export const CompletePageTemplate = ({ title, content, contentComponent }) => {
 
 CompletePageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
+  templateKey: PropTypes.string.isRequired,
   content: PropTypes.string,
   contentComponent: PropTypes.func,
 }
@@ -29,6 +30,7 @@ const CompletePage = ({ data }) => {
       <CompletePageTemplate
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
+        templateKey={post.frontmatter.templateKey}
         content={post.html}
       />
     </Layout>
@@ -47,6 +49,7 @@ export const completePageQuery = graphql`
       html
       frontmatter {
         title
+        templateKey
       }
     }
   }
