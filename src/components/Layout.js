@@ -75,6 +75,11 @@ export default function TemplateWrapper({ children }) {
               {children}
             </div>
             : 
+            pageType === 'suggestions-page' ?
+            <div>
+              {children}
+            </div>
+            :
             <>
               <section className="login-page">
                 <h1 className="title">Hi there!</h1>
