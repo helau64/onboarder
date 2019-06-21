@@ -14,6 +14,10 @@ export default function TemplateWrapper({ children }) {
 
   const [dialog, setDialog] = useState(false)
 
+  console.log(children)
+  console.log('///')
+  console.log(children.type.name);
+
   return (
     <div className={`${children.type.name} site-container`} style={{
       backgroundColor: children.props.bg ? children.props.bg : ''
