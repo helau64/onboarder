@@ -70,7 +70,8 @@ export default function TemplateWrapper({ children }) {
         </Helmet>
         <Navbar section={children.props.section} id={children.props.id} pageType={children.type.displayName}/>
         <main>
-          {isLoggedIn ? 
+          {children}
+          {/* {isLoggedIn ? 
             <div>
               {children}
             </div>
@@ -94,7 +95,8 @@ export default function TemplateWrapper({ children }) {
               </section>
               <IdentityModal showDialog={dialog} onCloseDialog={() => setDialog(false)} />
             </>
-          }
+          } */}
+          <IdentityModal showDialog={dialog} onCloseDialog={() => setDialog(false)} />
         </main>
         <Footer />
       </div>
