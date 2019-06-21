@@ -1,7 +1,5 @@
 ---
-templateKey: 'complete-page'
-path: /complete
+templateKey: complete-page
 title: You're done!
 ---
-
-Curabitur blandit tempus porttitor. Etiam porta sem malesuada magna mollis euismod.
+Congrats! If you still have questions, don't panic. Either ask one of the team or [submit it to our suggestions form](/suggestions).
