@@ -11,6 +11,6 @@ link:
 ---
 Wifi: **Production5**
 
-Password: **pr0dU2t10n**
+Password: 
 
 (those are 0s not Os)
